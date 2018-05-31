@@ -1,4 +1,5 @@
 
+import aiohttp
 from aiohttp import web
 
 routes = web.RouteTableDef()
@@ -18,6 +19,7 @@ async def websocket_handler(request):
             if msg.data == 'close':
                 await ws.close()
             else:
+                print(msg.data)
                 await ws.send_str(msg.data + '/answer')
         elif msg.type == aiohttp.WSMsgType.ERROR:
             print('ws connection closed with exception %s' %
@@ -29,4 +31,9 @@ async def websocket_handler(request):
 
 app = web.Application()
 app.router.add_routes(routes)
+#app.router.add_routes([web.static('/static', '/static')])
+app.router.add_static('/static', './static')
 web.run_app(app)
+
+
+
