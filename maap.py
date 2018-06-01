@@ -9,7 +9,7 @@ async def hello(request):
     return web.Response(text="Hello, world")
 
 sockets = []
-state = json.dumps([[0 for column in range(20)] for row in range(20)])
+state = json.dumps([[[0 for column in range(20)] for row in range(20)] for layer in range(3)])
 
 @routes.get('/ws')
 async def websocket_handler(request):
@@ -26,7 +26,6 @@ async def websocket_handler(request):
             if msg.data == 'close':
                 await ws.close()
             else:
-                print(msg.data)
                 state = msg.data
                 for socket in sockets:
                     if socket is ws:

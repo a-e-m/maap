@@ -22,18 +22,21 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
 
-    <div id="layerBar" class="bar">Layers</div>
-    <div id="toolBar" class="bar">
-        <i class="fas fa-paint-brush"></i>
-        <i class="fas fa-arrows-alt"></i>
-        <i class="fas fa-paint-brush"></i>
-    </div>
-    <div id="colorBar" class="bar">
-    </div>
+    <form id="layerBar" class="bar">
+        <div>
+            <input type="radio" name="layer" class="layer" id="layer0" value="0" checked>
+            <input type="radio" name="layer" class="layer" id="layer1" value="1">
+            <input type="radio" name="layer" class="layer" id="layer2" value="2">
+        </div>
+    </form>
+    <form id="toolBar" class="bar">
+        <i class="fas fa-paint-brush tool" id="brush"></i>
+        <i class="fas fa-arrows-alt tool" id="move"></i>
+        <i class="fas fa-trash-alt tool" id="clear"></i>
+    </form>
+    <form id="colorBar" class="bar">
+    </form>
     <div id="map">
-        <div class="square"></div>
-        <div class="square"></div> 
-        <div class="square"></div> 
     </div>
     
     
