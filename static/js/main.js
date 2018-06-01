@@ -5,7 +5,8 @@ var players = ['repeating-linear-gradient(45deg,#606dbc,#606dbc 10px,#465298 10p
 'repeating-linear-gradient(45deg,red,red 10px,orange 10px,orange 20px)',
 'radial-gradient(circle, rgba(234,244,0,1) 0%, rgba(228,10,10,1) 100%)',
 'radial-gradient(circle, rgba(0,244,28,1) 0%, rgba(10,161,228,1) 100%)',
-'radial-gradient(circle, rgba(131,3,131,1) 0%, rgba(0,38,244,1) 100%)',];
+'radial-gradient(circle, rgba(131,3,131,1) 0%, rgba(0,38,244,1) 100%)',
+'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%)',];
 
 var effects = ['linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,0.19089642693014708) 100%)', 
 'linear-gradient(90deg, rgba(242,8,8,1) 0%, rgba(255,198,5,0.8127451664259454) 100%)',
@@ -27,6 +28,15 @@ var state = {
     mapData: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]]],
     tileSize: 64
 };
+
+if (player) {
+    state.tool = 'move';
+    state.layer = 1;
+    $('#layerBar').hide();
+    $('#colorBar').hide();
+    $('#toolBar').hide();
+    $('#map').css('left', 0).css('top', 0);
+}
 
 // main logic:
 var websocket = new WebSocket(state.wsUri);
