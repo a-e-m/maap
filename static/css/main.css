@@ -142,7 +142,7 @@ body {
 #colorBar {
     top: 0em;
     left: 35em;
-    width: 50em;
+    width: 60em;
     height: 4em;
 }
 
@@ -176,19 +176,20 @@ body {
 }
 
 .layer1 {
-    opacity: 0.5;
+    opacity: 1.0;
     z-index: 100;
 }
 
 .layer2 {
-    opacity: 0.3;
+    opacity: 1.0;
     z-index: 200;
 }
 
 .square.layer1  {
-    width: 50px;
-    height: 50px;
-    margin: 7px;
+    width: 60px;
+    height: 60px;
+    margin: 2px;
+    border-radius: 60px;
 }
 
 .square.layer2  {
