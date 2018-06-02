@@ -83,7 +83,7 @@ $(window).mouseup(handleTool).blur(handleTool).on('contextmenu', handleTool).on(
 
 function handleBrush(event) {
     var color;
-    if (event.type === 'mousedown') {
+    if (event.type === 'mousedown' || event.type === 'touchstart') {
         toolStates.brush.down = true;
         $('#map')
             .on('touchmove mousemove', handleTool);
@@ -92,14 +92,14 @@ function handleBrush(event) {
             toolStates.brush.erase = true;
         }
         changeSquare($(event.target), color);
-    } else if (event.type === 'mousemove') {
+    } else if (event.type === 'mousemove' || event.type === 'touchmove') {
         if (toolStates.brush.down) {
             if (toolStates.brush.erase)
                 color = 0;
             changeSquare($(event.target), color);
         }
     }
-    else if (event.type === 'mouseup' || event.type === 'blur') {
+    else if (event.type === 'mouseup' || event.type === 'blur' || event.type === 'touchend') {
         toolStates.brush.down = false;
         toolStates.brush.erase = false;
         $('#map')
@@ -112,10 +112,10 @@ function handleBrush(event) {
 }
 
 function handleMove(event) {
-    if (event.type === 'mousedown') {
+    if (event.type === 'mousedown' || event.type === 'touchstart') {
         $('#map').mousemove(handleTool);
         toolStates.move.start = $(event.target);
-    } else if (event.type === 'mouseup' || event.type === 'blur') {
+    } else if (event.type === 'mouseup' || event.type === 'blur' || event.type === 'touchend') {
         var start = toolStates.move.start;
         var end = $(event.target);
         if (start === null || !end.hasClass('square'))
@@ -133,7 +133,7 @@ function handleMove(event) {
 }
 
 function handleClear(event) {
-    if (event.type === 'mouseup') {
+    if (event.type === 'mouseup' || event.type === 'touchstart') {
         if (!$(event.target).hasClass('square'))
             return;
         _.each(state.mapData[state.layer], function(row) {
