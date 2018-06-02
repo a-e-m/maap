@@ -149,7 +149,7 @@ body {
 
 #map {
     position: relative;
-    top: 5em;
+    top: 7.5em;
     left: 10em;
     z-index: -1;
 }
