@@ -113,7 +113,7 @@ body {
 .bar {
     text-align: center;
     position: fixed;
-    background-color: rgba(230, 230, 250, 0.7);
+    background-color: rgba(230, 230, 250, 0.5);
 }
 
 .bar * {
@@ -143,7 +143,7 @@ body {
 #colorBar {
     top: 0em;
     left: 10em;
-    width: 80em;
+    width: 84em;
     height: 7.5em;
 }
 
@@ -183,7 +183,7 @@ body {
 }
 
 .layer2 {
-    opacity: 1.0;
+    opacity: 0.7;
     z-index: 200;
 }
 
