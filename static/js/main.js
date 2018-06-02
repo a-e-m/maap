@@ -15,13 +15,14 @@ var effects = ['linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,0.19089
 'linear-gradient(90deg, rgba(3,245,251,0.8183474073223039) 0%, rgba(241,255,253,0.37296925606179976) 100%)',
 'linear-gradient(90deg, rgba(255,255,255,0.8519608527004552) 0%, rgba(241,255,253,0.37296925606179976) 100%)'];
 
-var bg = [
-];
+var bg = _.map(['brackish_0_320.png', 'brackish_128_320.png', 'brackish_64_0.png', 'brackish_64_192.png', 'brackish_64_320.png', 'brackish_64_64.png', 'cement_0_320.png', 'cement_128_320.png', 'cement_64_128.png', 'cement_64_320.png', 'chests_64_0.png', 'chests_64_64.png', 'dirt2_0_320.png', 'dirt2_128_320.png', 'dirt2_64_192.png', 'dirt2_64_320.png', 'dirt_0_320.png', 'dirt_128_320.png', 'dirt_64_192.png', 'dirt_64_320.png', 'grass_0_320.png', 'grass_128_320.png', 'grass_64_192.png', 'grass_64_320.png', 'lava_0_320.png', 'lava_128_320.png', 'lava_64_192.png', 'lava_64_320.png', 'lavarock_0_320.png', 'lavarock_128_320.png', 'lavarock_64_192.png', 'lavarock_64_320.png', 'rock_0_0.png', 'rock_64_0.png', 'water_0_320.png', 'water_128_320.png', 'water_64_192.png', 'water_64_320.png', 'stairs_0_832.png', 'stairs_128_384.png', 'stairs_64_768.png', 'victoria_0_192.png', 'victoria_256_192.png', 'victoria_256_256.png', 'victoria_384_0.png', 'house_256_384.png', 'house_448_0.png', 'house_64_320.png', 'house_64_64.png', 'kitchen_64_192.png', 'kitchen_64_64.png', 'signs_0_64.png', 'signs_128_64.png', 'signs_64_64.png', 'slime_128_128.png', 'bat_0_128.png', 'bee_128_128.png', 'snake_0_192.png', 'small_worm_0_128.png'], function(item) {
+    return 'rgba(0, 0, 0, 0) url("./img/{}") repeat scroll 0% 0%/100% 100%'.replace('{}', item);
+});
 
 // state and data:
 var state = {
     tool: 'brush',
-    colors: ['rgba(0, 0, 0, 0)', 'black', 'white', 'red', 'maroon', 'orange', 'yellow', 'green', '#01410f', 'skyblue', 'blue', 'purple', '#4a2e13', 'tan', '#444', '#ccc'].concat(players).concat(effects),
+    colors: ['rgba(0, 0, 0, 0)', 'black', 'white', 'red', 'maroon', 'orange', 'yellow', 'green', '#01410f', 'skyblue', 'blue', 'purple', '#4a2e13', 'tan', '#444', '#ccc'].concat(players).concat(effects).concat(bg),
     color: 1,
     layer: +$('.layer:checked').attr('value'),
     wsUri: "ws://" + window.location.host + "/ws",
@@ -115,6 +116,9 @@ function handleMove(event) {
     if (event.type === 'mousedown' || event.type === 'touchstart') {
         $('#map').mousemove(handleTool);
         toolStates.move.start = $(event.target);
+    }
+    else if (event.type === 'mousemove' || event.type === 'touchmove') {
+        event.preventDefault();
     } else if (event.type === 'mouseup' || event.type === 'blur' || event.type === 'touchend') {
         var start = toolStates.move.start;
         var end = $(event.target);

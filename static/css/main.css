@@ -113,20 +113,21 @@ body {
 .bar {
     text-align: center;
     position: fixed;
-    background-color: rgba(230, 230, 250, 0.9);
+    background-color: rgba(230, 230, 250, 0.7);
 }
 
 .bar * {
     margin-top: 0.5em;
 }
 
-.fas {
+.tool {
     font-size: 2em;
-    margin-left: 0.5em;
+    margin-left: 0.2em;
+    margin-top: 0.75em;
 }
 
 #layerBar {
-    top: 0em;
+    top: 5em;
     left: 0em;
     width: 10em;
     height: 100%;
@@ -134,16 +135,16 @@ body {
 
 #toolBar {
     top: 0em;
-    left: 10em;
-    width: 25em;
-    height: 4em;
+    left: 0em;
+    width: 10em;
+    height: 5em;
 }
 
 #colorBar {
     top: 0em;
-    left: 35em;
-    width: 60em;
-    height: 4em;
+    left: 10em;
+    width: 80em;
+    height: 7.5em;
 }
 
 #map {
@@ -169,6 +170,7 @@ body {
     height: 2em;
     border: 2px solid black;
     display: inline-block;
+    margin: 1px;
 }
 
 .color:checked {
@@ -186,10 +188,6 @@ body {
 }
 
 .square.layer1  {
-    width: 60px;
-    height: 60px;
-    margin: 2px;
-    border-radius: 60px;
 }
 
 .square.layer2  {
