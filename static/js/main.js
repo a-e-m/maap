@@ -78,14 +78,15 @@ $('.tool').click(function(event) {
     elem.css('color', 'white');
 });
 
-$('#map').mousedown(handleTool);
-$(window).mouseup(handleTool).blur(handleTool).on('contextmenu', handleTool);
+$('#map').mousedown(handleTool).on('touchstart', handleTool);
+$(window).mouseup(handleTool).blur(handleTool).on('contextmenu', handleTool).on('touchend', handleTool);;
 
 function handleBrush(event) {
     var color;
     if (event.type === 'mousedown') {
         toolStates.brush.down = true;
-        $('#map').mousemove(handleTool);
+        $('#map')
+            .on('touchmove mousemove', handleTool);
         if (event.which == 3) {
             color = 0;
             toolStates.brush.erase = true;
@@ -101,7 +102,8 @@ function handleBrush(event) {
     else if (event.type === 'mouseup' || event.type === 'blur') {
         toolStates.brush.down = false;
         toolStates.brush.erase = false;
-        $('#map').off('mousemove');
+        $('#map')
+            .off('mousemove touchmove');
         sendMap();
     } else {
         event.preventDefault();
