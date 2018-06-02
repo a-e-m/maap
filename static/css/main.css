@@ -219,10 +219,14 @@ body {
 
 #layer1 {
     background-color: white;
+   	border-radius: 60px;
 }
 
 #layer2 {
     background-color: purple;
+    width: 40px;
+    height: 40px;
+    margin: 12px;
 }
 
 #brush {
