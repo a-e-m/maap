@@ -1,12 +1,12 @@
 import json
 import aiohttp
-from aiohttp import web
+from aiohttp import web, WSCloseCode
 
 routes = web.RouteTableDef()
 
 @routes.get('/')
 async def hello(request):
-    return web.Response(text="Hello, world")
+    return web.Response(text='<a href="/static/index.html">Go here</a>', content_type='text/html')
 
 sockets = set()
 state = json.dumps([[[0 for column in range(20)] for row in range(20)] for layer in range(3)])
@@ -41,9 +41,15 @@ async def websocket_handler(request):
 
     return ws
 
+async def on_shutdown(app):
+    for ws in sockets:
+        await ws.close(code=WSCloseCode.GOING_AWAY,
+                       message='Server shutdown')
+
 app = web.Application()
 app.router.add_routes(routes)
 app.router.add_static('/static', './static')
+app.on_shutdown.append(on_shutdown)
 web.run_app(app)
 
 
