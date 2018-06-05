@@ -154,6 +154,76 @@ body {
     z-index: -1;
 }
 
+#stat1 {
+	font-size:4em;
+	position:fixed;
+	bottom: 1em;
+	right: 1em;
+	color: white;
+}
+
+#char-info{
+	width: 100%;
+}
+
+.container{
+	display: none;
+	position: fixed;
+	top: 5em;
+	left: 25em;
+	width: 50em;
+}
+
+.embedded-text{
+	position: absolute;
+	top: 4em;
+	left: 6em;
+}
+
+.page2{
+	display: none;
+}
+
+.page3 {
+	display: none;
+}
+
+.page4 {
+	display: none;
+}
+
+.embedded-img{
+	position: absolute;
+	bottom: 5em;
+	left: 35em;
+	opacity: 0.5;
+}
+
+#dragonborn{
+	width:80%;
+}
+
+#druid{
+	width: 70%;
+}
+
+#halfling{
+	width:70%;
+}
+
+#dragon{
+	width:90%;
+}
+
+
+.page-toggles{
+	position: absolute;
+	font-size: 2em;
+	left: 6em;
+	bottom: 2em;
+}
+
+
 .square {
     width: 62px;
     height: 62px;
@@ -210,6 +280,7 @@ body {
 .layer:checked {
     opacity: 1.0;
 }
+
 
 #layer0 {
     background-color: #4a2e13;

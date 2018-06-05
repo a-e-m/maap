@@ -82,6 +82,65 @@ $('.tool').click(function(event) {
 $('#map').mousedown(handleTool).on('touchstart', handleTool);
 $(window).mouseup(handleTool).blur(handleTool).on('contextmenu', handleTool).on('touchend', handleTool);;
 
+$('#stat1').click(function(event) {
+    $('.container').toggle();
+});
+
+$('#left').click(function(event) {
+    var page = $('.embedded-text');
+    if (page.attr("id") == "p4") {
+        page.attr("id", 'p3');
+        $('.page4').toggle();
+        $('.page3').toggle();
+    } else if (page.attr("id") == "p3") {
+        page.attr("id", 'p2');
+        $('.page3').toggle();
+        $('.page2').toggle();
+    } else if (page.attr("id") == "p2") {
+        page.attr("id", "p1");
+        $('.page2').toggle();
+        $('.page1').toggle();
+    }
+})
+
+$('#right').click(function(event) {
+    var page = $('.embedded-text');
+    if (page.attr("id") == "p1") {
+        page.attr("id", 'p2');
+        $('.page1').toggle();
+        $('.page2').toggle();
+    } else if (page.attr("id") == "p2") {
+        page.attr("id", 'p3');
+        $('.page2').toggle();
+        $('.page3').toggle();
+    } else if (page.attr("id") == "p3") {
+        page.attr("id", "p4");
+        $('.page3').toggle();
+        $('.page4').toggle();
+    }
+})
+
+$('#double-left').click(function(event) {
+    var p = $('.embedded-text').attr("id");
+    if (p == "p1") {$('.page1').toggle();}
+    if (p == "p2") {$('.page2').toggle();}
+    if (p == "p3") {$('.page3').toggle();}
+    if (p == "p4") {$('.page4').toggle();}
+    $('.embedded-text').attr("id", "p1");
+    $('.page1').toggle();
+})
+
+$('#double-right').click(function(event) {
+    var p = $('.embedded-text').attr("id");
+    if (p == "p1") {$('.page1').toggle();}
+    if (p == "p2") {$('.page2').toggle();}
+    if (p == "p3") {$('.page3').toggle();}
+    if (p == "p4") {$('.page4').toggle();}
+    $('.embedded-text').attr("id", "p4");
+    $('.page4').toggle();
+})
+
+
 function handleBrush(event) {
     var color;
     if (event.type === 'mousedown' || event.type === 'touchstart') {
