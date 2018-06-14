@@ -16,7 +16,7 @@ var effects = ['linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,0.19089
 'linear-gradient(90deg, rgba(255,255,255,0.8519608527004552) 0%, rgba(241,255,253,0.37296925606179976) 100%)'];
 
 var bg = _.map(['brackish_0_320.png', 'brackish_128_320.png', 'brackish_64_0.png', 'brackish_64_192.png', 'brackish_64_320.png', 'brackish_64_64.png', 'cement_0_320.png', 'cement_128_320.png', 'cement_64_128.png', 'cement_64_320.png', 'dirt2_0_320.png', 'dirt2_128_320.png', 'dirt2_64_192.png', 'dirt2_64_320.png', 'dirt_0_320.png', 'dirt_128_320.png', 'dirt_64_192.png', 'dirt_64_320.png', 'grass_0_320.png', 'grass_128_320.png', 'grass_64_192.png', 'grass_64_320.png', 'lava_0_320.png', 'lava_128_320.png', 'lava_64_192.png', 'lava_64_320.png', 'lavarock_0_320.png', 'lavarock_128_320.png', 'lavarock_64_192.png', 'lavarock_64_320.png', 'mountains_384_64.png', 'rock_0_0.png', 'rock_64_0.png', 'water_0_320.png', 'water_128_320.png', 'water_64_192.png', 'water_64_320.png', 'stairs_0_832.png', 'stairs_128_384.png', 'stairs_64_768.png', 'castle_lightsources_128_0.png', 'mountains_0_512.png', 'mountains_576_256.png', 'mountains_576_320.png', 'mountains_576_384.png', 'mountains_640_448.png', 'mountains_64_512.png', 'mountains_704_448.png', 'victoria_0_192.png', 'victoria_256_192.png', 'victoria_256_256.png', 'victoria_384_0.png', 'house_256_384.png', 'house_448_0.png', 'house_64_320.png', 'house_64_64.png', 'bridges_0_192.png', 'bridges_128_192.png', 'bridges_192_256.png', 'bridges_256_0.png', 'bridges_256_256.png', 'bridges_320_256.png', 'bridges_64_192.png', 'kitchen_64_192.png', 'kitchen_64_64.png', 'signs_0_64.png', 'signs_128_64.png', 'signs_64_64.png', 'cabinets_0_0.png', 'cabinets_0_192.png', 'cabinets_128_0.png', 'cabinets_192_0.png', 'cabinets_256_0.png', 'cabinets_320_0.png', 'cabinets_320_128.png', 'cabinets_320_64.png', 'cabinets_64_0.png', 'cabinets_64_192.png', 'cabinets_64_256.png', 'cabinets_64_384.png', 'cabinets_64_448.png', 'chests_64_0.png', 'chests_64_64.png', 'slime_128_128.png', 'bat_0_128.png', 'bee_128_128.png', 'snake_0_192.png', 'small_worm_0_128.png', 'mimic_0_0.png'], function(item) {
-    return 'rgba(0, 0, 0, 0) url("./img/{}") repeat scroll 0% 0%/100% 100%'.replace('{}', item);
+    return 'rgba(0, 0, 0, 0) url("/static/img/{}") repeat scroll 0% 0%/100% 100%'.replace('{}', item);
 });
 
 // state and data:
@@ -25,7 +25,7 @@ var state = {
     colors: ['rgba(0, 0, 0, 0)', 'black', 'white', 'red', 'maroon', 'orange', 'yellow', 'green', '#01410f', 'skyblue', 'blue', 'purple', '#4a2e13', 'tan', '#444', '#ccc'].concat(players).concat(effects).concat(bg),
     color: 1,
     layer: +$('.layer:checked').attr('value'),
-    wsUri: "ws://" + window.location.host + "/ws",
+    wsUri: "ws://" + window.location.host + "/ws/" + name,
     mapData: [[[0, 0, 0], [0, 0, 0], [0, 0, 0]]],
     tileSize: 64
 };
@@ -175,7 +175,8 @@ function onClose(evt) {
 }
 
 function onMessage(evt) {
-    state.mapData = JSON.parse(evt.data);
+    var data = JSON.parse(evt.data);
+    state.mapData = data.map;
     makeMapOld(state.mapData, 0);
     makeMapOld(state.mapData, 1);
     makeMapOld(state.mapData, 2);
@@ -204,7 +205,8 @@ function gridY(y) {
 
 var sendMap = _.debounce(
 function() {
-    websocket.send(JSON.stringify(state.mapData));
+    var data = {map: state.mapData, name: name}
+    websocket.send(JSON.stringify(data));
 },
 500);
 

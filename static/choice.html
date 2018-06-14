@@ -21,37 +21,19 @@
     <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-
-    <h1>{{ error }}</h1>
-    <form id="layerBar" class="bar">
-        <div>
-            <input type="radio" name="layer" class="layer" id="layer0" value="0" checked>
-            <input type="radio" name="layer" class="layer" id="layer1" value="1">
-            <input type="radio" name="layer" class="layer" id="layer2" value="2">
-        </div>
-    </form>
-    <form id="toolBar" class="bar">
-        <i class="fas fa-paint-brush tool" id="brush"></i>
-        <i class="fas fa-arrows-alt tool" id="move"></i>
-        <i class="fas fa-trash-alt tool" id="clear"></i>
-    </form>
-    <form id="colorBar" class="bar">
-    </form>
-    <div id="map">
-    </div>
     
-    <script>
-        var player = (window.location.hash !== '#dm');
-        var name = '{{ name }}';
-    </script>
+    <form method="GET" action="map">
+        <label for="name">Map name</label><input type="text" name="name" id="name">
+        <button>Go</button>
+    </form>
+
+    
     <script src="/static/js/vendor/modernizr-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
     <script src="/static/js/plugins.js"></script>
-    <script src="/static/js/main.js"></script>
     
-
 
 </body>
 
