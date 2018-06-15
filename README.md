@@ -11,10 +11,7 @@ live server at http://47.152.38.4:8080/static/index.html
 2. Run maap.py
 `python3 maap.py`
 
-3. http://localhost:8080 (Or whichever port maap.py guides to) should return "Hello World"
-
-4. http://localhost:8080/static/index.html (player view)
-http://localhost:8080/static/index.html#dm (dm view)
+3. http://localhost:8080 (Or whichever port maap.py guides to) should let you create a new map.
 
 ## Interface
 To the left, there is the layer selection bar. The brown square is the background layer, the white circle is the entity layer, and the purple square is the effects layer.
