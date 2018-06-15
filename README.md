@@ -5,8 +5,8 @@ live server at http://47.152.38.4:8080/static/index.html
 
 ## How to run locally:
 
-1. First install aiohttp using pip
-`pip install aiohttp`
+1. First install the requirements using pip
+`pip install -r requirements.txt`
 
 2. Run maap.py
 `python3 maap.py`
@@ -37,7 +37,6 @@ The backend is very simple right now. It simply sets up WebSocket handlers and t
 - Proper touch support, for phones and tablets
 - Merging when two conflicting changes come in at about the same time (currently the last one to arrive overwrites the others)
 - Undo action for DM
-- Ability to save and load maps
 - Character specification sheet (work in progress)
 - Character marker
 - Status marker (buff/debuff, unconscious, stabilized, hidden, etc)
