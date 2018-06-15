@@ -77,8 +77,11 @@ def save_maps():
         json.dump(maps, save)
 
 def load_maps():
-    with open('data.txt', 'rt') as save:
-        return json.load(save)
+    try:
+        with open('data.txt', 'rt') as save:
+            return json.load(save)
+    except FileNotFoundError:
+        return {}
 
 async def save_loop():
     loop = asyncio.get_event_loop()
