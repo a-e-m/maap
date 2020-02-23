@@ -1,7 +1,6 @@
 # Dungeons and Dragons
 
 Game board for D&D.
-live server at http://47.152.38.4:8080/static/index.html
 
 ## How to run locally:
 
