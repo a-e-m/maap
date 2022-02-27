@@ -84,7 +84,7 @@ def load_maps():
         return {}
 
 async def save_loop():
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     old = await loop.run_in_executor(None, load_maps)
     maps.update(old)
     while True:
@@ -113,18 +113,14 @@ async def setup():
     site = web.TCPSite(runner, '0.0.0.0', PORT)
     await site.start()
 
-def main():
-    loop = asyncio.get_event_loop()
+async def main():
     try:
-        loop.run_until_complete(asyncio.gather(
-            save_loop(),
-            setup()
-        ))
+        await asyncio.gather(
+            setup(),
+            save_loop()
+        )
     except KeyboardInterrupt:
         print('stopping')
-        loop.stop()
+        asyncio.get_running_loop().stop()
 
-main()
-
-
-
+asyncio.run(main())
